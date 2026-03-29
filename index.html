@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PK Enterprises | Engine Oils & Lubricants</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #121212;
+            --muted: #555;
+            --primary: #f9c600;
+            --primary-dark: #c99b00;
+            --accent: #111;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1100px, 92vw);
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 4px;
+            border: 1px solid #e6e6e6;
+            box-shadow: var(--shadow);
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            padding: 8px 10px;
+            border-radius: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-btn {
+            display: none;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 72vh;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
+            z-index: 1;
+        }
+
+        .hero img.bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.05);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 0 auto 24px;
+            color: #e8e8e8;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn.ghost:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .section-lead {
+            color: var(--muted);
+            margin-bottom: 32px;
+            max-width: 720px;
+        }
+
+        /* About */
+        .about-card {
+            background: #fdfdfd;
+            border: 1px solid #f0f0f0;
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Products */
+        .cards {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #f2f2f2;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(249, 198, 0, 0.15);
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .gallery figure {
+            margin: 0;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery figcaption {
+            padding: 12px 14px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Location */
+        .map-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #f1f1f1;
+        }
+
+        iframe {
+            width: 100%;
+            border: 0;
+            min-height: 320px;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            align-items: start;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #e2e2e2;
+            background: #fafafa;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(249, 198, 0, 0.25);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .cta-stack {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn.outline {
+            background: #fff;
+            border-color: #111;
+            color: #111;
+        }
+
+        .btn.outline:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background: #0e0e0e;
+            color: #e8e8e8;
+            padding: 28px 0;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        footer small {
+            color: #b3b3b3;
+        }
+
+        /* Mobile */
+        @media (max-width: 720px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                right: 4vw;
+                top: 62px;
+                background: #fff;
+                border: 1px solid #eee;
+                border-radius: 12px;
+                padding: 10px 12px;
+                box-shadow: var(--shadow);
+                flex-direction: column;
+                width: 190px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .hero-content {
+                padding: 100px 18px;
+                text-align: left;
+            }
+
+            .btn-row {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="container nav-wrap">
+            <div class="brand">
+                <img src="logo.jpg" alt="PK Enterprises logo" class="brand-logo">
+                <span>PK Enterprises</span>
+            </div>
+            <button class="menu-btn" aria-label="Toggle menu">Menu ▾</button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#location">Location</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="hero">
+        <img class="bg"
+            src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1500&q=80"
+            alt="Industrial oil background">
+        <div class="hero-content container">
+            <h1>Premium Engine Oils & Lubricants</h1>
+            <p>Authorized Distributor for Cars, Bikes & Industrial Machinery. Genuine products, reliable service, and
+                performance you can trust.</p>
+            <div class="btn-row">
+                <a class="btn primary" href="#contact">Contact Us</a>
+                <a class="btn ghost" href="#contact">Get Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About PK Enterprises</h2>
+            <p class="section-lead">We deliver trusted lubrication solutions for every engine and machine.</p>
+            <div class="about-card">
+                <p>PK Enterprises is an authorized distributor of premium engine oils, lubricants, and greases. Catering
+                    to a wide range of needs, they supply genuine products for cars, bikes, and industrial machinery.
+                    Located in the heart of Satara's MIDC, PK Enterprises provides reliable service to all its
+                    customers, ensuring top-quality products that keep engines and machinery running smoothly.</p>
+                <p style="margin-top:12px; font-weight:600; color: var(--accent);">Authorized distributor of Veedol Oil
+                    · All kinds of industrial and automotive oil.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Products</h2>
+            <p class="section-lead">Curated range of lubricants to protect and power every application.</p>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">🛢️</div>
+                    <h3>Engine Oil</h3>
+                    <p>High-performance oils for passenger cars, SUVs, and commercial fleets.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏍️</div>
+                    <h3>Bike Oil</h3>
+                    <p>Shear-stable motorcycle oils designed for smooth rides and engine life.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏭</div>
+                    <h3>Industrial Lubricants</h3>
+                    <p>Solutions for heavy-duty equipment, compressors, and hydraulics.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧴</div>
+                    <h3>Greases</h3>
+                    <p>Premium greases for bearings, chassis, and extreme operating conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-lead">A glimpse of PK Enterprises on the ground.</p>
+            <div class="gallery gallery-grid">
+                <figure>
+                    <img src="signage.jpeg" alt="PK Enterprises roadside signage">
+                    <figcaption>Brand signage at site entrance</figcaption>
+                </figure>
+                <figure>
+                    <img src="facility.jpeg" alt="PK Enterprises warehouse shutters">
+                    <figcaption>Warehouse bays at MIDC facility</figcaption>
+                </figure>
+                <figure>
+                    <img src="inventory.jpeg" alt="Inside PK Enterprises inventory warehouse">
+                    <figcaption>Inventory and lubricant stock</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location">
+        <div class="container">
+            <h2 class="section-title">Location</h2>
+            <p class="section-lead">NA/A/3/2, behind Preeti Executive, Old MIDC, MIDC, Dhangarwadi, Maharashtra 415004
+            </p>
+            <div style="margin-top: 14px;">
+                <a class="btn outline" href="https://maps.app.goo.gl/ADMKTqd3swX6hJX26" target="_blank" rel="noopener">
+                    Show on Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-lead">Tell us what you need—our team will respond quickly.</p>
+            <div class="contact-grid">
+                <form>
+                    <div>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div>
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" placeholder="+91 91723 57777" required>
+                    </div>
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary" aria-label="Submit contact form">Send Message</button>
+                </form>
+                <div>
+                    <h3 style="margin-bottom: 12px;">Talk to Us</h3>
+                    <p style="color: var(--muted); margin-bottom: 18px;">Prefer WhatsApp or a quick call? Reach out
+                        instantly.</p>
+                    <p style="margin-bottom: 10px; font-weight: 600;">Phone: <a href="tel:+919172357777">+91 91723
+                            57777</a></p>
+                    <p style="margin-bottom: 16px; font-weight: 600;">Email: <a
+                            href="mailto:pkenterprisesveedol@gmail.com">pkenterprisesveedol@gmail.com</a></p>
+                    <div class="cta-stack">
+                        <a class="btn outline" href="https://wa.me/919172357777" target="_blank"
+                            rel="noopener">WhatsApp</a>
+                        <a class="btn primary" href="tel:+919172357777">Call Now</a>
+                        <a class="btn ghost" href="mailto:pkenterprisesveedol@gmail.com">Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>PK Enterprises</div>
+            <div>NA/A/3/2, behind Preeti Executive, Old MIDC, MIDC, Dhangarwadi, Maharashtra 415004</div>
+            <small>© 2026 All rights reserved</small>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('open')));
+        // Smooth scroll offset fix for sticky nav (optional enhancement)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (!target) return;
+                e.preventDefault();
+                const y = target.getBoundingClientRect().top + window.pageYOffset - 70;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            });
+        });
+        // Basic form handler placeholder
+        document.querySelector('form').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Thank you! We will contact you shortly.');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
